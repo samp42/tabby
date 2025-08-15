@@ -1,15 +1,12 @@
 #include <pybind11/pybind11.h>
 
-namespace py = pybind11;
+#include "csv.h"
 
-int add(int i, int j)
-{
-    return i + j;
-}
+namespace py = pybind11;
 
 PYBIND11_MODULE(tabby, m)
 {
-    m.doc() = "pybind11 example plugin"; // optional module docstring
+    m.doc() = "pybind11 module for tabby";
 
-    m.def("add", &add, "A function that adds two numbers");
+    // m.def("read_csv", &tabby::ReadCSVRead, "A function that reads a CSV and returns a DataFrame", py::arg("path"));
 }

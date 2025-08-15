@@ -1,6 +1,7 @@
 /datasets
 .DS_Store
 tabby
+tabby_ex
 
 # Created by https://www.toptal.com/developers/gitignore/api/cmake,visualstudiocode,python,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=cmake,visualstudiocode,python,c++

@@ -4,28 +4,35 @@
 #include <memory>
 #include <vector>
 #include "array.h"
-#include "types.h"
 
-template <typename T>
-class ChunkedArray
+namespace tabby
 {
-public:
-    ChunkedArray(Types type, int chunkSize = 1024);
-    ~ChunkedArray();
 
-    void Append(const void *data, int size);
-    void *Get(int index) const;
-    int Length() const;
+    constexpr size_t CHUNK_SIZE = 256;
 
-    Types GetType() const;
+    typedef struct c
+    {
+        std::array<char, CHUNK_SIZE / 8> null_mask_;
+        std::array<char, CHUNK_SIZE / 8> valid_mask_;
+    } Chunk;
 
-private:
-    Types type_;
-    int chunkSize_;
-    std::vector<Array<T, chunkSize>> chunks_;
-    int length_ = 0;
+    template <typename T, size_t ChunkSize>
+    class ChunkedArray
+    {
+    public:
+        ChunkedArray() : length_(0) {};
+        ~ChunkedArray();
 
-    void EnsureCapacity(int index);
-};
+        template <size_t n>
+        void Append(const std::array<T, n> &data);
+        void Append(ChunkedArray<T, ChunkSize> *other);
+        size_t Length() const;
+        size_t NumChunks() const;
+
+    private:
+        size_t length_ = 0;
+        std::vector<TabbyArray<T, ChunkSize>> chunks_;
+    };
+} // namespace tabby
 
 #endif // CHUNKED_ARRAY_H_
