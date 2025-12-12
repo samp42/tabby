@@ -2,6 +2,7 @@
 #define DATA_FRAME_H_
 
 #include <vector>
+#include "schema.h"
 #include "series.h"
 
 namespace tabby
@@ -14,6 +15,7 @@ namespace tabby
         ~DataFrame();
 
     private:
+        Schema schema_;
         std::vector<Series> columns_;
     };
 
