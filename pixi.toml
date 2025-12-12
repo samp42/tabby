@@ -1,0 +1,27 @@
+[workspace]
+authors = ["Samuel Proulx <email@gmail.com>"]
+channels = ["conda-forge"]
+name = "tabby"
+platforms = ["osx-64"]
+version = "0.1.0"
+
+[tasks]
+test = "pytest"
+ui = "streamlit run tools/tabby-ui.py"
+install-dev = "pip install -e ."
+
+[dependencies]
+python = "3.14.*"
+numpy = ">=2.3.5,<3"
+pytest = ">=9.0.1,<10"
+streamlit = ">=1.52.0,<2"
+
+[pypi-dependencies]
+dearpygui = ">=2.1.1, <3"
+
+# [tool.pixi.activation]
+# scripts = ["pip install -e ."]
+
+# [tool.setuptools.packages.find]
+# where = ["."]
+# exclude = ["tests*", "tools*"]

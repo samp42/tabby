@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+# requires = ["uv_build >= 0.9.9, <0.10.0"]
+# build-backend = "uv_build"
+
+[project]
+name = "tabby"
+version = "0.1.0"
+
+# [tool.setuptools.packages.find]
+# #where = ["tabby"]
+# include = ["tabby", "tabby.*"]
+
+# [tool.setuptools]
+# package-dir = { "" = "src" }
+
+# [tool.setuptools.packages.find]
+# where = ["src"]
+# include = ["tabby*"]
+
+# [tool.pytest.ini_options]
+# pythonpath = ["."]
