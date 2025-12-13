@@ -6,9 +6,9 @@
 
 import pytest
 import numpy as np
-# import tabby as tab
+import tabby as tab
 
-from .. import tabby as tab
+# from .. import tabby as tab
 
 # @pytest.mark.parametrize("a,b,expected", [
 #     (2, 3, 5),
