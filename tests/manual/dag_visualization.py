@@ -21,4 +21,5 @@ if __name__ == "__main__":
     node4 = tab.dag.DAGNode("D")
     dag.add_node(node4, [node2.id, node3.id])
 
+    # pyrefly: ignore [missing-attribute]
     dag.visualize()

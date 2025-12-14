@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from typing import List, Any
-from .token import Token
+from .token import Token, get_token
 from .tokentype import TokenType
 
 class DataFrame():
@@ -12,15 +10,22 @@ class DataFrame():
         self.cols = []
         self.query = []
 
-    def select(self, *cols: Any) -> DataFrame:
-        self.query.append(TokenType.SELECT)
-        for col in cols:
-            self.query.append(Token(str(col)))
+    def select(self, *cols: List[str]) -> DataFrame:
+        if cols == '*':
+            return self
 
-        pass
+        self.query.append(get_token(TokenType.SELECT))
+        self.query.append(get_token(TokenType.LPAREN))
+        for col in cols:
+            self.query.append(TokenType.COLUMN_LITERAL)
+
+        self.query.append(TokenType.RPAREN)
+
+        return self
 
     def where(self, condition: Any) -> DataFrame:
-        self.query.append(TokenType.WHERE)
-        self.query.append(Token(str(condition)))
-        pass
+        self.query.append(get_token(TokenType.WHERE))
 
+
+
+        return self

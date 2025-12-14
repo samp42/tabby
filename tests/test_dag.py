@@ -24,6 +24,7 @@ import tabby as tab
 def test_dag_initialization():
     dag = tab.DAG()
     assert dag is not None
+    # pyrefly: ignore [bad-argument-type]
     assert len(dag.nodes) == 0
     assert dag.adj.shape == (0, 0)
 
@@ -31,7 +32,9 @@ def test_add_node_no_parent():
     dag = tab.DAG()
     node = tab.DAGNode("A")
     dag.add_node(node)
+    # pyrefly: ignore [bad-argument-type]
     assert len(dag.nodes) == 1
+    # pyrefly: ignore [bad-index]
     assert dag.nodes[0].name == "A"
     assert dag.adj.shape == (1, 1)
     # assert dag.adj == np.ndarray([[0]])
@@ -40,14 +43,18 @@ def test_add_node_parent():
     dag = tab.DAG()
     node1 = tab.DAGNode("A")
     dag.add_node(node1)
+    # pyrefly: ignore [bad-argument-type]
     assert len(dag.nodes) == 1
+    # pyrefly: ignore [bad-index]
     assert dag.nodes[0].name == "A"
     assert dag.adj.shape == (1, 1)
     # assert dag.adj == np.ndarray([[0]])
 
     node2 = tab.DAGNode("B")
     dag.add_node(node2, [node1.id])
+    # pyrefly: ignore [bad-argument-type]
     assert len(dag.nodes) == 2
+    # pyrefly: ignore [bad-index]
     assert dag.nodes[1].name == "B"
     assert dag.adj.shape == (2, 2)
     # assert dag.adj == np.ndarray([[0, 1],

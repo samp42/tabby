@@ -1,12 +1,20 @@
 [build-system]
 requires = ["setuptools>=75", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.pyrefly]
+project-includes = [
+    "**/*.py*",
+    "**/*.ipynb",
+]
 # requires = ["uv_build >= 0.9.9, <0.10.0"]
 # build-backend = "uv_build"
 
 [project]
 name = "tabby"
 version = "0.1.0"
+
+[tool]
 
 # [tool.setuptools.packages.find]
 # #where = ["tabby"]

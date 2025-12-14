@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from enum import Enum, auto
 
 class TokenType(Enum):
@@ -9,6 +7,7 @@ class TokenType(Enum):
     DB_SCAN = auto()
 
     # Literals
+    COLUMN_LITERAL = auto()
     STRING_LITERAL = auto()
     NUMERIC_LITERAL = auto()
     BOOLEAN_LITERAL = auto()
@@ -39,3 +38,10 @@ class TokenType(Enum):
     LTE = auto()
     GT = auto()
     GTE = auto()
+
+    # Grouping
+    LPAREN = auto()
+    RPAREN = auto()
+
+    def __str__(self) -> str:
+        return self.name

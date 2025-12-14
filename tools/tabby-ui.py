@@ -8,6 +8,7 @@ import streamlit as st
 import numpy as np
 import tabby as tab
 
+# pyrefly: ignore [unknown-name]
 def visualize_dag(dag: DAG):
     st.title("DAG Visualization")
 

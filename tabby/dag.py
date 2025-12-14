@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import TypeVar
 import numpy as np
 
@@ -22,48 +20,64 @@ class DAG:
 
     def __init__(self, name: str | None = None):
         self.name = name
+        # pyrefly: ignore [bad-assignment]
         self.nodes = []
         self.adj = np.zeros((0, 0))
 
     def add_node(self, node: DAGNode, parent_ids: list | None = None):
+        # pyrefly: ignore [not-iterable]
         if any(n.id == node.id for n in self.nodes):
             raise Exception('Node with id already exists')
+        # pyrefly: ignore [not-iterable]
         elif parent_ids is not None and any(parent_id not in [n.id for n in self.nodes] for parent_id in parent_ids):
             raise Exception('Parent id does not exist')
         else:
+            # pyrefly: ignore [missing-attribute]
             self.nodes.append(node)
             if parent_ids is not None:
                 for parent_id in parent_ids:
+                    # pyrefly: ignore [bad-argument-type]
                     parent_index = next(i for i, n in enumerate(self.nodes) if n.id == parent_id)
+                    # pyrefly: ignore [bad-argument-type]
                     child_index = len(self.nodes) - 1
+                    # pyrefly: ignore [bad-argument-type]
                     new_adj = np.zeros((len(self.nodes), len(self.nodes)))
                     new_adj[:self.adj.shape[0], :self.adj.shape[1]] = self.adj
                     self.adj = new_adj
                     self.adj[parent_index][child_index] = 1
             else:
+                # pyrefly: ignore [bad-argument-type]
                 new_adj = np.zeros((len(self.nodes), len(self.nodes)))
                 new_adj[:self.adj.shape[0], :self.adj.shape[1]] = self.adj
                 self.adj = new_adj
 
     def mount_subdag(self, subdag: DAG, parent_ids: list | None = None):
+        # pyrefly: ignore [not-iterable]
         if parent_ids is not None and any(parent_id not in [n.id for n in self.nodes] for parent_id in parent_ids):
             raise Exception('Parent id does not exist')
         else:
             id_mapping = {}
+            # pyrefly: ignore [not-iterable]
             for sub_node in subdag.nodes:
                 new_node = DAGNode(sub_node.name)
                 self.add_node(new_node)
                 id_mapping[sub_node.id] = new_node.id
+            # pyrefly: ignore [bad-argument-type]
             for i, sub_node in enumerate(subdag.nodes):
+                # pyrefly: ignore [bad-argument-type]
                 for j, sub_node2 in enumerate(subdag.nodes):
                     if subdag.adj[i][j] == 1:
+                        # pyrefly: ignore [bad-argument-type]
                         parent_index = next(k for k, n in enumerate(self.nodes) if n.id == id_mapping[sub_node.id])
+                        # pyrefly: ignore [bad-argument-type]
                         child_index = next(k for k, n in enumerate(self.nodes) if n.id == id_mapping[sub_node2.id])
                         self.adj[parent_index][child_index] = 1
             if parent_ids is not None:
                 for parent_id in parent_ids:
                     for sub_root in subdag.get_roots():
+                        # pyrefly: ignore [bad-argument-type]
                         parent_index = next(i for i, n in enumerate(self.nodes) if n.id == parent_id)
+                        # pyrefly: ignore [bad-argument-type]
                         child_index = next(i for i, n in enumerate(self.nodes) if n.id == id_mapping[sub_root])
                         self.adj[parent_index][child_index] = 1
 
@@ -71,6 +85,7 @@ class DAG:
         # Find the longest path in the DAG
         # Return list of node ids
         # Take into account that there can be multiple roots and leaves
+        # pyrefly: ignore [bad-argument-type]
         num_nodes = len(self.nodes)
         dist = [-float('inf')] * num_nodes
         for i in range(num_nodes):
@@ -84,13 +99,16 @@ class DAG:
         critical_path = []
         for i in range(num_nodes - 1, -1, -1):
             if dist[i] == max_dist:
+                # pyrefly: ignore [bad-index]
                 critical_path.append(self.nodes[i].id)
                 max_dist -= 1
         return critical_path[::-1]
 
     def get_roots(self):
         roots = []
+        # pyrefly: ignore [bad-argument-type]
         for i, node in enumerate(self.nodes):
+            # pyrefly: ignore [bad-argument-type]
             if all(self.adj[j][i] == 0 for j in range(len(self.nodes))):
                 roots.append(node.id)
         return roots
