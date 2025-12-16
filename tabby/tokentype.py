@@ -43,5 +43,8 @@ class TokenType(Enum):
     LPAREN = auto()
     RPAREN = auto()
 
+    # Aggregations
+    COUNT = auto()
+
     def __str__(self) -> str:
         return self.name

@@ -13,10 +13,12 @@ def test_select_query_building():
     df = df.select('col1', 'col2', 'col3')
 
     expected_query = [
-        TokenType.SELECT,
+        get_token(TokenType.SELECT),
+        get_token(TokenType.LPAREN),
         Token(TokenType.COLUMN_LITERAL, 'col1'),
         Token(TokenType.COLUMN_LITERAL, 'col2'),
-        Token(TokenType.COLUMN_LITERAL, 'col3')
+        Token(TokenType.COLUMN_LITERAL, 'col3'),
+        get_token(TokenType.RPAREN)
     ]
 
     assert df.query == expected_query
@@ -43,6 +45,17 @@ def test_where_query_building():
 
     assert df.query == expected_query
 
+def test_count_query_building():
+    df = tab.DataFrame()
+    count = df.count()
+
+    expected_query = [
+        get_token(TokenType.SELECT),
+        get_token(TokenType.COUNT)
+    ]
+
+    assert df.query == expected_query
+    assert count == 0  # Since count method returns 0 in the stub
 
 if __name__ == "__main__":
     pytest.main()
