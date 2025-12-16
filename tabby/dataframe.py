@@ -27,11 +27,11 @@ class DataFrame():
         self.query.append(get_token(TokenType.WHERE))
 
         return self
-    
+
     def count(self) -> int:
         self.query.append(get_token(TokenType.SELECT))
         self.query.append(get_token(TokenType.COUNT))
         return 0
-    
+
     def collect(self) -> DataFrame:
         return self
