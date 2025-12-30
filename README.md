@@ -20,3 +20,5 @@ Some optimizations that I think could be interesting to explore are:
 - Database Extractions: In SAS, database tables can be used as a libname and are used just like any other table. This is very cool and useful in some cases, so I think a good framework should allow to use a database table in a query containing a dataframe and know automatically what to fetch in the database. It could also use schema information and table statistics to optimize queries.
 - Data Distribution: Libraries like Spark will run a distribute the results of a SQL query on multiple executors and each executors will do computations on a subset of the data to speed things up. A performance-focused framework should be able to efficiently allocate data.
 - Memory Management: Long chains of operations cause data to be accumulated which slows processing down. This is something that I have experienced professionally with Spark. The optimization engine should know when things are not needed anymore and free things up.
+
+streamlit graph viz: https://github.com/ChrisDelClea/streamlit-agraph
