@@ -1,4 +1,4 @@
-from typing import List, Any, Tuple
+from typing import List, Any
 from .token import Token, get_token
 from .tokentype import TokenType
 
@@ -10,7 +10,7 @@ class DataFrame():
         self.cols = []
         self.query = []
 
-    def select(self, *cols: Tuple[str]) -> DataFrame:
+    def select(self, *cols: str) -> DataFrame:
         if cols == ('*',):
             return self
 
