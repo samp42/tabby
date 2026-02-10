@@ -18,6 +18,11 @@ class TokenType(Enum):
     SELECT = auto()
     WHERE = auto()
 
+    # Joins
+    JOIN = auto()
+    JOIN_ON = auto()
+    JOIN_HOW = auto()
+
     # Binary Operators
     ADD = auto()
     SUB = auto()

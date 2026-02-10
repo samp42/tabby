@@ -15,6 +15,9 @@ class Token():
         if not isinstance(other, Token):
             return False
         return self.type == other.type and self.lexeme == other.lexeme and self.literal == other.literal
+    
+    def __repr__(self):
+        return f"TOKEN(type={self.type}, lexeme={self.lexeme}, literal={self.literal})"
 
 
 def get_token(type: TokenType) -> Token:
