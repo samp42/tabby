@@ -3,6 +3,8 @@ environments:
   default:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       osx-64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/altair-6.0.0-pyhd8ed1ab_1.conda
@@ -3733,12 +3735,15 @@ packages:
   version: 0.1.0
   build: pyh4616a5c_0
   subdir: noarch
+  variants:
+    target_platform: noarch
   depends:
   - python
-  - python
+  - python *
   input:
-    hash: 37615b35d5034f12faaf5b62c4208dc132dd01bb043b39a29126962b72d82bc0
-    globs: []
+    hash: bac5a1b32a51aea84ab0e3170db6b659e7be089cdd336cdce80a3d98d2de7e3d
+    globs:
+    - pyproject.toml
 - conda: https://conda.anaconda.org/conda-forge/noarch/tenacity-9.1.2-pyhd8ed1ab_0.conda
   sha256: fd9ab8829947a6a405d1204904776a3b206323d78b29d99ae8b60532c43d6844
   md5: 5d99943f2ae3cc69e1ada12ce9d4d701

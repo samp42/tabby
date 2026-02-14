@@ -1,4 +1,4 @@
-from __future__ import annotations
+from typing import Self
 
 class Expr:
     value: str
@@ -6,10 +6,15 @@ class Expr:
     def __init__(self, value: str):
         self.value = value
 
-    def __gt__(self, other: int) -> Expr:
+    def __gt__(self, other: Self) -> Expr:
         return Expr(f"({self.value} > {other})")
 
-def col(name: str) -> 'Expr':
+    def __lt__(self, other: Self) -> Expr:
+        return Expr(f"({self.value} < {other})")
+
+
+
+def col(name: str) -> Expr:
     return Expr(f"Column({name})")
 
 """

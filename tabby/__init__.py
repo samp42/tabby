@@ -19,9 +19,10 @@
 
 from .dag import DAG, DAGNode
 from .dataframe import DataFrame
+from .expr import Expr, col
+from .join import JoinType
 from .tokentype import TokenType
 from .token import Token
-from .expr import Expr, col
 
 from .functions.database import from_db
 from .functions.csv import read_csv

@@ -15,7 +15,7 @@ class AST:
         self.children = children
 
     def build_from_query(query: List[Token]):
-        # Root must be select (query must start with select)
+        # Query not starting with select is valid
         # Treat literals, identifiers, and inputs as leaves
         #
 
